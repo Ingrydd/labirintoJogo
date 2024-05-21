@@ -1,0 +1,82 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+#controles {
+    margin-bottom: 20px;
+}
+
+#containerLabirinto.oculto {
+    display: none;
+}
+
+.oculto {
+    display: none;
+}
+
+#labirinto {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.parede {
+    position: absolute;
+    background-color: #333;
+}
+
+#bola {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #ff0000;
+    border-radius: 50%;
+}
+
+#fim {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 75px;
+    height: 50px;
+    background-color: #09ff00;
+    color: #e2ffee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#informacoes {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+}

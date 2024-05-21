@@ -1,12 +1,5 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Estilos gerais */
 body {
-    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,26 +7,37 @@ body {
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
-}
-
-header {
-    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
-    font-size: 2em;
     color: #333;
+}
+
+p {
+    color: #666;
 }
 
 #controles {
     margin-bottom: 20px;
 }
 
-#containerLabirinto.oculto {
-    display: none;
+#botaoIniciar, #botaoReiniciar {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.oculto {
+#botaoIniciar:hover, #botaoReiniciar:hover {
+    background-color: #0056b3;
+}
+
+#containerLabirinto.oculto {
     display: none;
 }
 
@@ -41,23 +45,44 @@ h1 {
     position: relative;
     width: 500px;
     height: 500px;
-    background-color: #ffffff;
+    background-color: white;
     border: 2px solid #000;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .parede {
     position: absolute;
-    background-color: #333;
+    background-color: #000;
+}
+
+.parede1 {
+    top: 100px;
+    left: 0;
+    width: 400px;
+    height: 20px;
+}
+
+.parede2 {
+    top: 200px;
+    left: 100px;
+    width: 400px;
+    height: 20px;
+}
+
+.parede3 {
+    top: 300px;
+    left: 0;
+    width: 400px;
+    height: 20px;
 }
 
 #bola {
     position: absolute;
     width: 25px;
     height: 25px;
-    background-color: #ff0000;
+    background-color: red;
     border-radius: 50%;
+    transition: background-color 0.3s;
 }
 
 #fim {
@@ -67,16 +92,22 @@ h1 {
     width: 75px;
     height: 50px;
     background-color: #09ff00;
-    color: #e2ffee;
+    color: #e2ffed;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 #informacoes {
     text-align: center;
-    font-size: 1.2em;
-    color: #555;
+}
+
+.oculto {
+    display: none;
+}
+
+.reset-posicao {
+    left: 0;
+    top: 0;
 }

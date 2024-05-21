@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1>Jogo do Labirinto</h1>
+    <p>Guie a bola vermelha até a chegada para ganhar. Evite as paredes!</p>
     <div id="controles">
         <button id="botaoIniciar">Iniciar</button>
+        <button id="botaoReiniciar" class="oculto">Reiniciar</button>
     </div>
     <div id="containerLabirinto" class="oculto">
         <div id="labirinto">
             <div id="fim">Chegada</div>
             <div id="bola"></div>
-            <div class="parede" style="top: 100px; left: 0; width: 400px; height: 20px;"></div>
-            <div class="parede" style="top: 200px; left: 100px; width: 400px; height: 20px;"></div>
-            <div class="parede" style="top: 300px; left: 0; width: 400px; height: 20px;"></div>
+            <div class="parede parede1"></div>
+            <div class="parede parede2"></div>
+            <div class="parede parede3"></div>
         </div>
         <div id="informacoes">
             <p>Tempo: <span id="tempo">0</span> segundos</p>
         </div>
     </div>
-    <div id="mensagem" class="oculto"></div>
     <script src="script.js"></script>
 </body>
 </html>

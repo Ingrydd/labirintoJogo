@@ -1,64 +1,64 @@
 const bola = document.getElementById('bola');
 const labirinto = document.getElementById('labirinto');
 const botaoIniciar = document.getElementById('botaoIniciar');
+const botaoReiniciar = document.getElementById('botaoReiniciar');
 const containerLabirinto = document.getElementById('containerLabirinto');
 const fim = document.getElementById('fim');
 const tempoElemento = document.getElementById('tempo');
-const pontuacaoElemento = document.getElementById('pontuacao');
 const paredes = document.querySelectorAll('.parede');
-const retanguloLabirinto = labirinto.getBoundingClientRect();
 const tempoInicial = 20;
 
 let tempoRestante = tempoInicial;
 let intervaloTempo;
 let arrastando = false;
+let alertaExibido = false;
 
 botaoIniciar.addEventListener('click', iniciarJogo);
+botaoReiniciar.addEventListener('click', reiniciarJogo);
 bola.addEventListener('mousedown', iniciarArrasto);
+bola.addEventListener('mouseup', pararArrastar);
+bola.removeEventListener('mousemove', moverBola);
+bola.addEventListener('dblclick', function(evento) {});
 
-function iniciarJogo(){
+function iniciarJogo() {
     containerLabirinto.classList.remove('oculto');
-    botaoIniciar.disabled = true;
+    botaoIniciar.classList.add('oculto');
+    botaoReiniciar.classList.remove('oculto');
     iniciarTempo();
 }
 
-function iniciarArrasto() {
+function iniciarArrasto(evento) {
     arrastando = true;
+    evento.preventDefault();
     document.addEventListener('mousemove', moverBola);
-    document.addEventListener('mouseup', pararArrastar);
 }
 
 function moverBola(evento) {
     if (!arrastando) return;
-
+    
     const labirintoRect = labirinto.getBoundingClientRect();
     const bolaRect = bola.getBoundingClientRect();
-
+    
     let newLeft = evento.clientX - labirintoRect.left - bolaRect.width / 2;
     let newTop = evento.clientY - labirintoRect.top - bolaRect.height / 2;
-
+    
     newLeft = Math.max(0, Math.min(newLeft, labirintoRect.width - bolaRect.width));
     newTop = Math.max(0, Math.min(newTop, labirintoRect.height - bolaRect.height));
-
+    
     bola.style.left = `${newLeft}px`;
     bola.style.top = `${newTop}px`;
-
+    
     if (verificarChegada()) {
-        vencerJogo(); 
         return;
     }
-
+    
     if (verificarColisao()) {
-        reiniciarJogo(); 
         return;
-    }
+    } 
 }
 
 function pararArrastar() {
     arrastando = false;
-
-    document.removeEventListener('mousemove', moverBola);
-    document.removeEventListener('mouseup', pararArrastar);
 }
 
 function verificarColisao() {
@@ -69,8 +69,10 @@ function verificarColisao() {
               retanguloBola.left > retanguloParede.right || 
               retanguloBola.bottom < retanguloParede.top || 
               retanguloBola.top > retanguloParede.bottom)) {
+            alert("Você bateu na parede! Tente novamente!");
+            reiniciarJogo();
             return true; 
-            }
+        }
     }
     return false; 
 }
@@ -79,21 +81,20 @@ function verificarChegada() {
     const retanguloBola = bola.getBoundingClientRect();
     const retanguloFim = fim.getBoundingClientRect();
 
-    return !(retanguloBola.right < retanguloFim.left || 
-             retanguloBola.left > retanguloFim.right || 
-             retanguloBola.bottom < retanguloFim.top || 
-             retanguloBola.top > retanguloFim.bottom);
+    if(!(retanguloBola.right < retanguloFim.left || 
+        retanguloBola.left > retanguloFim.right || 
+        retanguloBola.bottom < retanguloFim.top || 
+        retanguloBola.top > retanguloFim.bottom)){
+            alert("Parabéns! Você ganhou!");
+            reiniciarJogo();
+            return true;
+        }
+    return false
 }
 
-
-let alertaExibido = false;
-
 function reiniciarJogo() {
-    if (!alertaExibido) {
-        alertaExibido = true;
-        alert('Você perdeu! Reiniciando o jogo!');
-        resetarJogo();
-    }
+    alertaExibido = false;
+    resetarJogo();
 }
 
 function vencerJogo() {
@@ -104,17 +105,20 @@ function vencerJogo() {
     }
 }
 
-
-
 function resetarJogo() {
+    arrastando = false;
+    bola.classList.add('reset-posicao');
     bola.style.left = '0px';
     bola.style.top = '0px';
-    clearInterval(intervaloTempo);
+
     tempoRestante = tempoInicial;
     atualizarTempo();
+    iniciarTempo();
+
     containerLabirinto.classList.add('oculto');
-    botaoIniciar.disabled = false;
-}
+    botaoIniciar.classList.remove('oculto');
+    botaoReiniciar.classList.add('oculto');
+}    
 
 function atualizarTempo() {
     tempoElemento.textContent = tempoRestante;
@@ -124,8 +128,7 @@ function iniciarTempo() {
     if (!intervaloTempo) {
         intervaloTempo = setInterval(function() {
             if (tempoRestante === 0) {
-                clearInterval(intervaloTempo);
-                alert("Tempo Esgotado!" + "\nVocê perdeu!!");
+                alert("Tempo Esgotado! Você perdeu!!");
                 resetarJogo();
             } else {
                 atualizarTempo();

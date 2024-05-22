@@ -13,8 +13,7 @@ Bem-vindo ao Jogo do Labirinto! Este jogo desafia você a guiar uma bola vermelh
 - Vencer o Jogo: Ao alcançar a chegada do labirinto, você vence o jogo! 
 - Se precisar reiniciar o jogo por qualquer motivo, você pode clicar no botão "Reiniciar" a qualquer momento para começar novamente. Isso reiniciará a posição da bola e o tempo do jogo.
 
-> Nota
-> Este jogo tem um limite de tempo de 20 segundos. Se o tempo se esgotar antes de você alcançar a chegada, você perderá o jogo. Fique atento ao tempo restante!
+> Nota: Este jogo tem um limite de tempo de 20 segundos. Se o tempo se esgotar antes de você alcançar a chegada, você perderá o jogo. Fique atento ao tempo restante!
 
 ## Autores
 - Willker Santana Viana

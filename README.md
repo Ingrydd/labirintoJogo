@@ -15,3 +15,8 @@ Bem-vindo ao Jogo do Labirinto! Este jogo desafia você a guiar uma bola vermelh
 
 > Nota
 > Este jogo tem um limite de tempo de 20 segundos. Se o tempo se esgotar antes de você alcançar a chegada, você perderá o jogo. Fique atento ao tempo restante!
+
+## Autores
+- Willker Santana Viana
+- Ingryd Belazzi Alves
+- Julio César Bernardo Leite
